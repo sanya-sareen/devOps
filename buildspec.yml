@@ -8,10 +8,10 @@ phases:
     commands:
       - pwd
       - ls -l
-      - ./sample_file.sh  # Execute the script to generate sample_file.txt
+      - sample_file.sh  # Execute the script to generate sample_file.txt
   post_build:
     commands:
-      - upload_to_s3.sh  # Upload artifacts to S3 (if needed)
+      - sample_file.sh  # Upload artifacts to S3 (if needed)
 
 artifacts:
   files:
