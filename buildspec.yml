@@ -1,0 +1,12 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - pwd
+      - chmod +x upload_to_s3.sh  # Ensure the script is executable
+      - sample_file.sh  # Execute the shell script
+
+artifacts:
+  files:
+    - sample_file.txt
