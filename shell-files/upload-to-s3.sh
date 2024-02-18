@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Create a sample file
-echo "This is a sample file created by the sample_file.sh script." > sample_file.txt
+echo "This is a sample file created by the upload-to-s3.sh script." > sample_file.txt
 
 # Upload the file to S3 bucket
 aws s3 cp sample_file.txt s3://uploading-shell-script/sample_file.txt

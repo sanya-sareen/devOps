@@ -8,9 +8,9 @@ phases:
     commands:
       - pwd
       - ls -l
-      - chmod +x sample_file.sh
-      - sample_file.sh  # Execute the script to generate sample_file.txt
+      - chmod +x shell-files/upload-to-s3.sh
+      - shell-files/upload-to-s3.sh  # Execute the script to generate sample_file.txt
 
 artifacts:
   files:
-    - sample_file.txt  # Specify correct path if needed
+    - shell-files/sample_file.txt  # Specify correct path if needed
