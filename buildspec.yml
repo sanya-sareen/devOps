@@ -6,6 +6,7 @@ phases:
 #      # Install any required dependencies here
   build:
     commands:
+      - pwd
       - sample_file.sh  # Execute the script to generate sample_file.txt
   post_build:
     commands:
