@@ -1,12 +1,16 @@
 version: 0.2
 
 phases:
+#  install:
+#    commands:
+#      # Install any required dependencies here
   build:
     commands:
-      - pwd
-      - chmod +x upload_to_s3.sh  # Ensure the script is executable
-      - sample_file.sh  # Execute the shell script
+      - sample_file.sh  # Execute the script to generate sample_file.txt
+  post_build:
+    commands:
+      - upload_to_s3.sh  # Upload artifacts to S3 (if needed)
 
 artifacts:
   files:
-    - sample_file.txt
+    - sample_file.txt  # Specify correct path if needed
