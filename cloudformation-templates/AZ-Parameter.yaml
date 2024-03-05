@@ -1,0 +1,57 @@
+Description: KeyName Parameter Demo
+
+Parameters:
+  MyKeyName:
+    Description: Select the key name from the list
+    Type: AWS::EC2::KeyPair::KeyName
+
+  MyAvailabilityZone:
+    Description: Select the AZ
+    Type: String
+    Default: us-east-1a
+    AllowedValues:
+      - us-east-2a
+      - us-east-1a
+
+  SecurityGroupDescription:
+    Description: Security Group Description
+    Type: String
+
+Resources:
+  MyInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      AvailabilityZone: !Ref MyAvailabilityZone
+      ImageId: ami-0c7217cdde317cfec
+      InstanceType: t2.micro
+      KeyName: !Ref MyKeyName
+      SecurityGroups:
+        - !Ref SSHSecurityGroup
+        - !Ref ServerSecurityGroup
+
+
+  # our EC2 security group
+  SSHSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Enable SSH access via port 22
+      SecurityGroupIngress:
+      - CidrIp: 0.0.0.0/0
+        FromPort: 22
+        IpProtocol: tcp
+        ToPort: 22
+
+  # our second EC2 security group
+  ServerSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: !Ref SecurityGroupDescription
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: tcp
+        FromPort: 22
+        ToPort: 22
+        CidrIp: 192.168.1.1/32
