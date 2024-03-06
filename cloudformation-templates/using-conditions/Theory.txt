@@ -1,0 +1,33 @@
+Fn::And
+Fn::Equals
+Fn::If
+Fn::Not
+Fn::Or
+
+AWS cf only creates the resource or o/p if the condition is true
+
+Conditions:
+    Logical ID:
+        Intrinsic function
+
+Conditions are evluted based on predefined Psuedo parameters
+
+We can associate conditions in 3 places:
+Resources
+Resource Properties
+Outputs
+
+At stack creation or stack update, AWS cf evaluates all conditions in our templates. During stack update, resources that are now associated with a false conditions are deleted
+
+
+
+
+
+
+
+
+
+
+
+
+

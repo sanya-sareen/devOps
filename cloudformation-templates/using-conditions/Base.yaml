@@ -1,0 +1,43 @@
+Description: Conditions Practice
+
+Parameters:
+  MyKeyName:
+    Description: Select Key Name
+    Type: AWS::EC2::KeyPair::KeyName
+
+  EnvironmentName:
+    Description: Select the environment
+    Type: String
+    Default: dev
+    AllowedValues:
+      - dev
+      - prod
+    ConstraintDescription: must be dev or prod
+
+Mappings:
+  MyRegionMap:
+    us-east-2:
+      HVM64: ami-0cd3dfa4e37921605
+    us-east-1:
+      HVM64: ami-0c7217cdde317cfec
+
+  MyEnvironmentMap:
+    dev:
+      instanceType: t2.micro
+    prod:
+      instanceType: t2.small
+
+Resources:
+  MyVMInstance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !FindInMap
+        - MyRegionMap
+        - !Ref 'AWS::Region'
+        - HVM64
+      InstanceType: !FindInMap
+        - MyEnvironmentMap
+        - !Ref EnvironmentName
+        - instanceType
+      KeyName: !Ref MyKeyName
+
