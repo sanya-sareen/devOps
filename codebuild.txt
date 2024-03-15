@@ -1,0 +1,18 @@
+CodeBuild-
+BuildSpec specification:
+
+
+Using webhook-
+	Create a source repository
+	Add the buildspec file- buildpsec.yml in the source
+	Create CodeBuild:
+o	Add source code
+o	Connect the source expect when using code commit
+o	Under webhooks- choose the filter group
+
+Eg:-
+Here, the codebuild is automatically building the code using the webhook filter- push
+Repo github name:- automate-build
+Codebuild name:- automate-git-source
+
+Using CloudFormation template:
